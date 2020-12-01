@@ -1,0 +1,92 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "JBL Endurance",
+    "Description": "Bele, Crne",
+    "Category": "Bežične slušalice",
+    "Manufacturer": "JBL",
+    "Supplier": "Gigatron",
+    "Cost": "5.899"
+  },
+  {
+    "Id": 2,
+    "Name": "JBL Tune 500BT",
+    "Description": "Bele, Crne, Crvene",
+    "Category": "Bežične slušalice",
+    "Manufacturer": "JBL",
+    "Supplier": "Gigatron",
+    "Cost": "6.299"
+  },
+  {
+    "Id": 3,
+    "Name": "JBL E45BT",
+    "Description": "Bele, Crne, Plave",
+    "Category": "Bežične slušalice",
+    "Manufacturer": "JBL",
+    "Supplier": "Gigatron",
+    "Cost": "11.999"
+  },
+  {
+    "Id": 4,
+    "Name": "JBL QUANTUM 100",
+    "Description": "Crne, Crvene",
+    "Category": "Gejmerske slušalice",
+    "Manufacturer": "JBL",
+    "Supplier": "Gigatron",
+    "Cost": "4.999"
+  },
+  {
+    "Id": 5,
+    "Name": "JBL QUANTUM 600",
+    "Description": "Bele, Crne",
+    "Category": "Gejmerske slušalice",
+    "Manufacturer": "JBL",
+    "Supplier": "WinWin",
+    "Cost": "17.999"
+  },
+  {
+    "Id": 6,
+    "Name": "JBL QUANTUM 800",
+    "Description": "Bele, Crne",
+    "Category": "Gejmerske slušalice",
+    "Manufacturer": "JBL",
+    "Supplier": "Gigatron",
+    "Cost": "24.599"
+  },
+  {
+    "Id": 7,
+    "Name": "SENNHEISER CX 350BT",
+    "Description": "Bele",
+    "Category": "Bežične slušalice",
+    "Manufacturer": "SENNHEISER",
+    "Supplier": "WinWin",
+    "Cost": "11.899"
+  },
+  {
+    "Id": 8,
+    "Name": "SENNHEISER CX 100",
+    "Description": "Crvene",
+    "Category": "Bubice",
+    "Manufacturer": "SENNHEISER",
+    "Supplier": "Gigatron",
+    "Cost": "2.499"
+  },
+  {
+    "Id": 9,
+    "Name": "SENNHEISER HD 450BT",
+    "Description": "Crne",
+    "Category": "Bežične slušalice",
+    "Manufacturer": "SENNHEISER\t",
+    "Supplier": "Giagatron",
+    "Cost": "15.999"
+  },
+  {
+    "Id": 10,
+    "Name": "SONY WH-CH510L",
+    "Description": "Bele, Crne, Crvene",
+    "Category": "Bežične slušalice",
+    "Manufacturer": "SONY",
+    "Supplier": "WinWin",
+    "Cost": "6.999"
+  }
+]

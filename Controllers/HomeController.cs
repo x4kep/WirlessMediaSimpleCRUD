@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using WirlessMediaSimpleCRUD.Models;
 
 namespace WirlessMediaSimpleCRUD.Controllers
@@ -20,6 +22,11 @@ namespace WirlessMediaSimpleCRUD.Controllers
 
         public IActionResult Index()
         {
+            var folderDetails = Path.Combine(Directory.GetCurrentDirectory(), $"Files\\{"Products.json"}");
+            var JSON = System.IO.File.ReadAllText(folderDetails);
+            var myJsonObject = JsonConvert.DeserializeObject<List<Product>>(JSON);
+
+
             return View();
         }
 
