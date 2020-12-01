@@ -11,11 +11,11 @@ using WirlessMediaSimpleCRUD.Models;
 
 namespace WirlessMediaSimpleCRUD.Controllers
 {
-    public class HomeController : Controller
+    public class ProductsJSONController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ProductsJSONController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public ProductsJSONController(ILogger<ProductsJSONController> logger)
         {
             _logger = logger;
         }
@@ -29,7 +29,12 @@ namespace WirlessMediaSimpleCRUD.Controllers
             return View(fileReadList);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        public IActionResult Create()
         {
             return View();
         }
