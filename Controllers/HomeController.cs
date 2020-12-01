@@ -22,12 +22,11 @@ namespace WirlessMediaSimpleCRUD.Controllers
 
         public IActionResult Index()
         {
-            var folderDetails = Path.Combine(Directory.GetCurrentDirectory(), $"Files\\{"Products.json"}");
-            var JSON = System.IO.File.ReadAllText(folderDetails);
-            var myJsonObject = JsonConvert.DeserializeObject<List<Product>>(JSON);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), $"Files\\{"Products.json"}");
+            var fileRead = System.IO.File.ReadAllText(filePath);
+            var fileReadList = JsonConvert.DeserializeObject<List<Product>>(fileRead);
 
-
-            return View();
+            return View(fileReadList);
         }
 
         public IActionResult Privacy()
