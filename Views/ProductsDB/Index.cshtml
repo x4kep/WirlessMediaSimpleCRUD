@@ -16,6 +16,7 @@
                 <th scope="col">Manufacturer</th>
                 <th scope="col">Supplier</th>
                 <th scope="col">Cost</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -29,8 +30,12 @@
                     <td>@product.Manufacturer</td>
                     <td>@product.Supplier</td>
                     <td>@product.Cost</td>
+                    <td>
+                        <a type="button" class="btn btn-outline-secondary btn-block" asp-action="Edit">Edit</a>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+    <a type="button" class="btn btn-outline-primary float-right" asp-action="Create">Create</a>
 </div>

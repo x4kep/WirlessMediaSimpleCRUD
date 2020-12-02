@@ -8,25 +8,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using WirlessMediaSimpleCRUD.Models;
+using WirlessMediaSimpleCRUD.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace WirlessMediaSimpleCRUD.Controllers
 {
     public class ProductsDBController : Controller
     {
         private readonly ILogger<ProductsJSONController> _logger;
+        private readonly ProductContext _context;
 
-        public ProductsDBController(ILogger<ProductsJSONController> logger)
+        public ProductsDBController(ILogger<ProductsJSONController> logger, ProductContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), $"Files\\{"Products.json"}");
-            var fileRead = System.IO.File.ReadAllText(filePath);
-            var fileReadList = JsonConvert.DeserializeObject<List<Product>>(fileRead);
+            var dbReadList = await _context.Products.ToListAsync();
 
-            return View(fileReadList);
+            return View(dbReadList);
         }
 
         public IActionResult Edit()
