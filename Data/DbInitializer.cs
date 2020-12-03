@@ -6,7 +6,7 @@ namespace WirlessMediaSimpleCRUD.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(ProductContext context)
+        public static void Initialize(MainContext context)
         {
             context.Database.EnsureCreated();
 

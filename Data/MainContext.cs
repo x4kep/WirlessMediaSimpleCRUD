@@ -7,9 +7,9 @@ using WirlessMediaSimpleCRUD.Models;
 
 namespace WirlessMediaSimpleCRUD.Data
 {
-    public class ProductContext : DbContext
+    public class MainContext : DbContext
     {
-        public ProductContext(DbContextOptions<ProductContext> options) : base(options)
+        public MainContext(DbContextOptions<MainContext> options) : base(options)
         {
         }
 

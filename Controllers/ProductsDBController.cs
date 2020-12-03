@@ -10,15 +10,16 @@ using Newtonsoft.Json;
 using WirlessMediaSimpleCRUD.Models;
 using WirlessMediaSimpleCRUD.Data;
 using Microsoft.EntityFrameworkCore;
+using WirlessMediaSimpleCRUD.Repositories;
 
 namespace WirlessMediaSimpleCRUD.Controllers
 {
     public class ProductsDBController : Controller
     {
         private readonly ILogger<ProductsJSONController> _logger;
-        private readonly ProductContext _context;
+        private readonly IProductRepository _context;
 
-        public ProductsDBController(ILogger<ProductsJSONController> logger, ProductContext context)
+        public ProductsDBController(ILogger<ProductsJSONController> logger, IProductRepository context)
         {
             _logger = logger;
             _context = context;
@@ -26,34 +27,34 @@ namespace WirlessMediaSimpleCRUD.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var dbReadList = new List<Product>();
+            var getProducts = new List<Product>();
             try
             {
-                dbReadList = await _context.Products.ToListAsync();
-                return View(dbReadList);
+                getProducts = await _context.GetProductsAsync();
+                return View(getProducts);
             }
             catch(Exception e)
             {
                 Console.WriteLine(e);
             }
 
-            return View(dbReadList);
+            return View(getProducts);
         }
 
         public async Task<IActionResult> Edit(int? id)
         {
-            var getSingleProduct = new Product();
+            var getProduct = new Product();
             if (id == null)
             {
                 return NotFound();
             }
 
-            getSingleProduct = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
+            getProduct = await _context.GetProductAsync(id);
 
-            return View(getSingleProduct);
+            return View(getProduct);
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -69,28 +70,7 @@ namespace WirlessMediaSimpleCRUD.Controllers
                     return View("Edit", product);
             }
 
-            if (product.Id == 0)
-            {
-                // Create 
-                var createSingleProduct = _context.Products.Add(product);
-                await _context.SaveChangesAsync();
-            }
-            else
-            {
-                // Update
-                var singleProduct = await _context.Products.SingleOrDefaultAsync(p => p.Id == product.Id);
-                if (singleProduct != null)
-                {
-                    // Add auto mapper
-                    singleProduct.Name = product.Name;
-                    singleProduct.Description = product.Description;
-                    singleProduct.Category = product.Category;
-                    singleProduct.Manufacturer = product.Manufacturer;
-                    singleProduct.Supplier = product.Supplier;
-                    singleProduct.Cost = product.Cost;
-                    await _context.SaveChangesAsync();
-                }
-            }
+            await _context.UpsertProductAsync(product);
 
             return RedirectToAction("Index");
         }

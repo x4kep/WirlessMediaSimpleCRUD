@@ -29,7 +29,7 @@ namespace WirlessMediaSimpleCRUD
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<ProductContext>();
+                    var context = services.GetRequiredService<MainContext>();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)

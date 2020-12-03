@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WirlessMediaSimpleCRUD.Data;
 using Microsoft.EntityFrameworkCore;
+using WirlessMediaSimpleCRUD.Repositories;
 
 namespace WirlessMediaSimpleCRUD
 {
@@ -26,8 +27,11 @@ namespace WirlessMediaSimpleCRUD
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddDbContext<ProductContext>(options =>
+            services.AddDbContext<MainContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            // dependency injection
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             //services.AddDatabaseDeveloperPageExceptionFilter();
         }
