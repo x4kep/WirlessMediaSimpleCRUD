@@ -23,19 +23,19 @@
             @foreach (var product in @Model)
             {
                 <tr>
-                    <th scope="row">@product.Id</th>
-                    <td>@product.Name</td>
-                    <td>@product.Description</td>
-                    <td>@product.Category</td>
-                    <td>@product.Manufacturer</td>
-                    <td>@product.Supplier</td>
-                    <td>@product.Cost</td>
-                    <td>
-                        <a type="button" class="btn btn-outline-secondary btn-block" asp-action="Edit">Edit</a>
+                    <th class="align-middle" scope="row">@product.Id</th>
+                    <td class="align-middle">@product.Name</td>
+                    <td class="align-middle">@product.Description</td>
+                    <td class="align-middle">@product.Category</td>
+                    <td class="align-middle">@product.Manufacturer</td>
+                    <td class="align-middle">@product.Supplier</td>
+                    <td class="align-middle">@product.Cost</td>
+                    <td class="align-middle">
+                        <a type="button" class="btn btn-outline-secondary btn-block" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-    <a type="button" class="btn btn-outline-primary float-right" asp-action="Create">Create</a>
+    <a type="button" class="btn btn-outline-primary float-right mb-5" asp-action="Create">Create</a>
 </div>
