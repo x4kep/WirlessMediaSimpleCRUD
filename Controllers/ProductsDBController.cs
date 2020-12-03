@@ -26,24 +26,34 @@ namespace WirlessMediaSimpleCRUD.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var dbReadList = await _context.Products.ToListAsync();
+            var dbReadList = new List<Product>();
+            try
+            {
+                dbReadList = await _context.Products.ToListAsync();
+                return View(dbReadList);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
             return View(dbReadList);
         }
 
         public async Task<IActionResult> Edit(int? id)
         {
+            var getSingleProduct = new Product();
             if (id == null)
             {
                 return NotFound();
             }
 
-            var getSingleProduct = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
+            getSingleProduct = await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
 
             return View(getSingleProduct);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -51,7 +61,15 @@ namespace WirlessMediaSimpleCRUD.Controllers
         [HttpPost]
         public async Task<IActionResult> Upsert(Product product)
         {
-            if(product.Id == 0)
+            if (!ModelState.IsValid)
+            {
+                if(product.Id == 0)
+                    return View("Create", product);
+                else
+                    return View("Edit", product);
+            }
+
+            if (product.Id == 0)
             {
                 // Create 
                 var createSingleProduct = _context.Products.Add(product);
@@ -61,7 +79,7 @@ namespace WirlessMediaSimpleCRUD.Controllers
             {
                 // Update
                 var singleProduct = await _context.Products.SingleOrDefaultAsync(p => p.Id == product.Id);
-                if(singleProduct != null)
+                if (singleProduct != null)
                 {
                     // Add auto mapper
                     singleProduct.Name = product.Name;

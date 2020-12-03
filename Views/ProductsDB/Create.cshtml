@@ -5,31 +5,37 @@
 
 <div class="row">
     <div class="col">
-        <form asp-controller="ProductsDB" asp-action="Upsert" method="post" enctype="multipart/form-data">
+        <form asp-controller="ProductsDB" asp-action="Upsert" method="post">
             <input asp-for="Id" type="hidden">
             <div class="form-group">
                 <label asp-for="Name">Name</label>
                 <input asp-for="Name" type="text" class="form-control" aria-describedby="Product name">
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description">Description</label>
                 <input asp-for="Description" type="text" class="form-control">
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Category">Category</label>
                 <input asp-for="Category" type="text" class="form-control">
+                <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Manufacturer">Manufacturer</label>
                 <input asp-for="Manufacturer" type="text" class="form-control">
+                <span asp-validation-for="Manufacturer" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Supplier" for="supplier">Supplier</label>
                 <input asp-for="Supplier" type="text" class="form-control">
+                <span asp-validation-for="Supplier" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Cost" for="cost">Cost</label>
                 <input asp-for="Cost" type="number" class="form-control" id="cost">
+                <span asp-validation-for="Cost" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-outline-success float-right">Save</button>
             <a type="submit" class="btn btn-outline-info" href="javascript:history.back()">Back</a>
