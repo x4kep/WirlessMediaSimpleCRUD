@@ -1,0 +1,45 @@
+﻿@{ ViewData["Title"] = "Create product"; }
+@model WirlessMediaSimpleCRUD.ViewsModel.ProductModel
+
+<h3>@ViewData["Title"]</h3>
+
+<div class="row">
+    <div class="col">
+        <form asp-controller="Products" asp-action="Upsert" method="post">
+            <input asp-for="Store" value="@Model.Store" type="hidden">
+            <div class="form-group">
+                <label asp-for="@Model.Product.Name">Name</label>
+                <input asp-for="@Model.Product.Name" type="text" class="form-control" aria-describedby="Product name">
+                <span asp-validation-for="@Model.Product.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Product.Description">Description</label>
+                <input asp-for="@Model.Product.Description" type="text" class="form-control">
+                <span asp-validation-for="@Model.Product.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Product.Category">Category</label>
+                <input asp-for="@Model.Product.Category" type="text" class="form-control">
+                <span asp-validation-for="@Model.Product.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Product.Manufacturer">Manufacturer</label>
+                <input asp-for="@Model.Product.Manufacturer" type="text" class="form-control">
+                <span asp-validation-for="@Model.Product.Manufacturer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Product.Supplier" for="supplier">Supplier</label>
+                <input asp-for="@Model.Product.Supplier" type="text" class="form-control">
+                <span asp-validation-for="@Model.Product.Supplier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Product.Cost" for="cost">Cost</label>
+                <input asp-for="@Model.Product.Cost" type="number" class="form-control" id="cost">
+                <span asp-validation-for="@Model.Product.Cost" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-outline-success float-right">Save</button>
+            <a type="submit" class="btn btn-outline-info" href="javascript:history.back()">Back</a>
+        </form>
+    </div>
+    <div class="col"></div>
+</div>

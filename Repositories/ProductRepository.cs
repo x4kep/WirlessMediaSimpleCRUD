@@ -5,25 +5,26 @@ using System.Threading.Tasks;
 using WirlessMediaSimpleCRUD.Data;
 using WirlessMediaSimpleCRUD.Models;
 using Microsoft.EntityFrameworkCore;
+using WirlessMediaSimpleCRUD.Models;
 
 namespace WirlessMediaSimpleCRUD.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private MainContext _productContext;
+        private MainContext _context;
         public ProductRepository(MainContext context)
         {
-            _productContext = context;
+            _context = context;
         }
 
         async public Task<Product> GetProductAsync(int? id)
         {
-            return await _productContext.Products.SingleOrDefaultAsync(p => p.Id == id);
+            return await _context.Products.SingleOrDefaultAsync(p => p.Id == id);
         }
 
         async public Task<List<Product>> GetProductsAsync()
         {
-            return await _productContext.Products.ToListAsync();
+            return await _context.Products.ToListAsync();
         }
 
         async public Task UpsertProductAsync(Product product)
@@ -31,13 +32,13 @@ namespace WirlessMediaSimpleCRUD.Repositories
             if (product.Id == 0)
             {
                 // Create 
-                var createSingleProduct = _productContext.Products.Add(product);
-                await _productContext.SaveChangesAsync();
+                var createSingleProduct = _context.Products.Add(product);
+                await _context.SaveChangesAsync();
             }
             else
             {
                 // Update
-                var singleProduct = await _productContext.Products.SingleOrDefaultAsync(p => p.Id == product.Id);
+                var singleProduct = await _context.Products.SingleOrDefaultAsync(p => p.Id == product.Id);
                 if (singleProduct != null)
                 {
                     // Add auto mapper
@@ -47,7 +48,7 @@ namespace WirlessMediaSimpleCRUD.Repositories
                     singleProduct.Manufacturer = product.Manufacturer;
                     singleProduct.Supplier = product.Supplier;
                     singleProduct.Cost = product.Cost;
-                    await _productContext.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
                 }
             }
         }

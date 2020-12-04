@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using WirlessMediaSimpleCRUD.Data;
 using Microsoft.EntityFrameworkCore;
 using WirlessMediaSimpleCRUD.Repositories;
+using WirlessMediaSimpleCRUD.Models;
 
 namespace WirlessMediaSimpleCRUD
 {
@@ -32,8 +33,8 @@ namespace WirlessMediaSimpleCRUD
 
             // dependency injection
             services.AddScoped<IProductRepository, ProductRepository>();
-
-            //services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddScoped<IProductJSONRepository, ProductJSONRepository>();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +61,7 @@ namespace WirlessMediaSimpleCRUD
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=ProductsJSON}/{action=Index}/{id?}");
+                    pattern: "{controller=Products}/{action=Index}/{id?}");
             });
         }
     }
